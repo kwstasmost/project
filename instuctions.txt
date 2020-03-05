@@ -1,0 +1,9 @@
+Instructions to run the project:
+
+*Put your database credentials in the file connectDb.php
+
+*Create the database from the code in db.txt
+
+*Put the project in your server's directory 
+
+*Run the project with the path localhost/project

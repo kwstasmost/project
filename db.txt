@@ -1,0 +1,26 @@
+CREATE TABLE `users` (
+	`userid` INT NOT NULL AUTO_INCREMENT,
+	`fname` VARCHAR(50) NOT NULL,
+	`lname` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(50) UNIQUE NOT NULL,
+	`password` VARCHAR(200) NOT NULL,
+	`user_type` ENUM('admin','employee') NOT NULL,
+	PRIMARY KEY (`userid`)
+);
+CREATE TABLE `applications` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`userid` INT NOT NULL,
+	`date` DATETIME NOT NULL,
+	`vacation_start` DATE NOT NULL,
+	`vacation_end` DATE NOT NULL,
+	`reason` VARCHAR(200) NOT NULL,
+	`status` ENUM('pending','approved','rejected') NOT NULL,
+	PRIMARY KEY (`id`),
+	CONSTRAINT `FK__users` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`)
+);
+
+INSERT INTO users (fname, lname, email,password,user_type) VALUES ('Kostas', 'Mostratos', 'mostratos1995@yahoo.gr',SHA1('123'),'admin');
+INSERT INTO users (fname, lname, email,password,user_type) VALUES ('Nikos', 'Georgiou', 'ngeorgiou@gmail.gr',SHA1('123'),'employee');
+
+INSERT INTO applications (userid, date, vacation_start, vacation_end, reason, status) VALUES ('1', '2020-03-04 17:34:27', '2020-03-03', '2020-03-05', 'Wedding', 'pending');
+INSERT INTO applications (userid, date, vacation_start, vacation_end, reason, status) VALUES ('1', '2020-03-04 17:38:27', '2020-03-09', '2020-03-12', 'Wedding', 'pending');
